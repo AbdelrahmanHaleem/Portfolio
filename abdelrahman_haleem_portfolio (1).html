@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Abdelrahman Haleem — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&family=DM+Mono&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#0A0A0F;
+--surface:#111118;
+--surface2:#1A1A24;
+--border:#2A2A3A;
+--accent:#4F8EF7;
+--accent2:#7C3AED;
+--gold:#C9A84C;
+--text:#F0EEE8;
+--muted:#8A8A9A;
+--mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden}
+
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:.4;pointer-events:none;z-index:0}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 3rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.04);backdrop-filter:blur(16px);background:rgba(10,10,15,0.85)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;letter-spacing:0.02em;color:var(--text);text-decoration:none}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-resume{font-family:var(--mono);font-size:0.75rem;padding:0.45rem 1rem;border:1px solid var(--border);color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:border-color .2s,color .2s}
+.nav-resume:hover{border-color:var(--accent);color:var(--accent)}
+
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 3rem 5rem;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(79,142,247,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(79,142,247,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(79,142,247,0.08) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none}
+.hero-glow2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.06) 0%,transparent 70%);bottom:-100px;left:10%;pointer-events:none}
+.hero-content{max-width:780px;position:relative;z-index:1}
+.hero-label{font-family:var(--mono);font-size:0.78rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem}
+.hero-label::before{content:'';width:32px;height:1px;background:var(--accent)}
+h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:600;line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.5rem}
+h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{font-size:1.1rem;color:var(--muted);max-width:520px;line-height:1.8;margin-bottom:2.5rem;font-weight:300}
+.hero-badges{display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:3rem}
+.badge{font-family:var(--mono);font-size:0.72rem;padding:0.35rem 0.8rem;border:1px solid var(--border);color:var(--muted);letter-spacing:0.06em}
+.badge.active{border-color:rgba(79,142,247,0.4);color:var(--accent);background:rgba(79,142,247,0.06)}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{padding:0.85rem 2rem;background:var(--accent);color:#fff;text-decoration:none;font-size:0.88rem;font-weight:500;letter-spacing:0.04em;transition:opacity .2s}
+.btn-primary:hover{opacity:0.85}
+.btn-ghost{padding:0.85rem 2rem;border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:0.88rem;font-weight:400;letter-spacing:0.04em;transition:border-color .2s}
+.btn-ghost:hover{border-color:var(--muted)}
+.scroll-hint{position:absolute;bottom:3rem;left:3rem;display:flex;align-items:center;gap:0.75rem;color:var(--muted);font-size:0.78rem;font-family:var(--mono);letter-spacing:0.08em}
+.scroll-line{width:40px;height:1px;background:var(--muted)}
+
+section{padding:6rem 3rem;position:relative;z-index:1}
+.section-label{font-family:var(--mono);font-size:0.75rem;color:var(--accent);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.75rem}
+h2{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:600;letter-spacing:-0.01em;margin-bottom:1rem}
+.section-divider{width:48px;height:2px;background:var(--accent);margin-bottom:3rem}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.about-text p{color:var(--muted);font-weight:300;margin-bottom:1rem;line-height:1.9}
+.about-text p strong{color:var(--text);font-weight:500}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.stat-box{background:var(--surface);padding:1.5rem;text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:600;color:var(--text);display:block}
+.stat-label{font-family:var(--mono);font-size:0.72rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-top:0.25rem}
+.cert-list{margin-top:2rem;display:flex;flex-direction:column;gap:0.75rem}
+.cert-item{display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1rem;border:1px solid var(--border);font-size:0.85rem;color:var(--muted)}
+.cert-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+
+.skills-bg{background:var(--surface)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);margin-top:1rem}
+.skill-card{background:var(--surface);padding:2rem;transition:background .2s}
+.skill-card:hover{background:var(--surface2)}
+.skill-icon{font-size:1.5rem;margin-bottom:1rem;display:block}
+.skill-title{font-weight:500;font-size:0.95rem;margin-bottom:0.5rem;color:var(--text)}
+.skill-items{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.75rem}
+.pill{font-family:var(--mono);font-size:0.68rem;padding:0.25rem 0.6rem;border:1px solid var(--border);color:var(--muted);letter-spacing:0.04em}
+
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1px;background:var(--border)}
+.project-card{background:var(--surface);padding:2rem;position:relative;overflow:hidden;transition:background .25s;cursor:pointer}
+.project-card:hover{background:var(--surface2)}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.project-card:hover::before{transform:scaleX(1)}
+.project-tag{font-family:var(--mono);font-size:0.68rem;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:1rem}
+.project-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;margin-bottom:0.75rem;line-height:1.3}
+.project-desc{font-size:0.88rem;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:1.5rem}
+.project-stack{display:flex;flex-wrap:wrap;gap:0.4rem}
+.project-link{margin-top:1.5rem;display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--mono);font-size:0.72rem;color:var(--accent);text-decoration:none;letter-spacing:0.06em;transition:opacity .2s}
+.project-link:hover{opacity:0.7}
+.project-link::after{content:'→';transition:transform .2s}
+.project-card:hover .project-link::after{transform:translateX(4px)}
+
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--border)}
+.timeline-item{position:relative;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border)}
+.timeline-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.timeline-dot{position:absolute;left:-2.3rem;top:0.35rem;width:8px;height:8px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.timeline-dot.gold{background:var(--gold)}
+.timeline-date{font-family:var(--mono);font-size:0.72rem;color:var(--muted);letter-spacing:0.08em;margin-bottom:0.5rem}
+.timeline-role{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;margin-bottom:0.25rem}
+.timeline-company{font-size:0.9rem;color:var(--accent);margin-bottom:1rem;font-weight:400}
+.timeline-bullets{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+.timeline-bullets li{font-size:0.88rem;color:var(--muted);font-weight:300;padding-left:1.25rem;position:relative;line-height:1.75}
+.timeline-bullets li::before{content:'—';position:absolute;left:0;color:var(--border)}
+
+/* Education section */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--border);margin-top:1rem}
+.edu-card{background:var(--surface);padding:2rem}
+.edu-degree{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;margin-bottom:0.4rem;line-height:1.3}
+.edu-institution{font-size:0.88rem;color:var(--accent);margin-bottom:0.3rem}
+.edu-dates{font-family:var(--mono);font-size:0.72rem;color:var(--muted);letter-spacing:0.08em;margin-bottom:1rem}
+.edu-courses{font-size:0.82rem;color:var(--muted);font-weight:300;line-height:1.8}
+
+/* Contact */
+.contact-bg{background:var(--surface)}
+.contact-inner{max-width:640px}
+.contact-text{color:var(--muted);font-weight:300;font-size:1rem;line-height:1.9;margin-bottom:2.5rem}
+.contact-links{display:flex;flex-direction:column;gap:0.75rem}
+.contact-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border:1px solid var(--border);text-decoration:none;color:var(--text);font-size:0.9rem;transition:border-color .2s,background .2s}
+.contact-link:hover{border-color:var(--accent);background:rgba(79,142,247,0.04)}
+.contact-link-label{font-family:var(--mono);font-size:0.7rem;color:var(--muted);letter-spacing:0.08em;min-width:70px}
+.contact-link-val{font-size:0.85rem;color:var(--accent);flex:1}
+.contact-link-arrow{color:var(--muted);font-size:0.8rem}
+
+/* Availability badge */
+.availability{display:inline-flex;align-items:center;gap:0.6rem;font-family:var(--mono);font-size:0.72rem;color:#4ade80;letter-spacing:0.08em;margin-bottom:2rem;padding:0.5rem 1rem;border:1px solid rgba(74,222,128,0.2);background:rgba(74,222,128,0.05)}
+.availability-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+.footer-text{font-family:var(--mono);font-size:0.72rem;color:var(--muted);letter-spacing:0.06em}
+.footer-links{display:flex;gap:1.5rem;list-style:none}
+.footer-links a{font-family:var(--mono);font-size:0.72rem;color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:color .2s}
+.footer-links a:hover{color:var(--accent)}
+
+/* animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-label{animation:fadeUp .7s ease both}
+h1{animation:fadeUp .7s .1s ease both}
+.hero-sub{animation:fadeUp .7s .2s ease both}
+.hero-badges{animation:fadeUp .7s .3s ease both}
+.hero-cta{animation:fadeUp .7s .4s ease both}
+
+/* scroll reveal */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .hero{padding:6rem 1.5rem 4rem}
+  section{padding:4rem 1.5rem}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  h1{font-size:2.8rem}
+  footer{flex-direction:column;gap:1rem;text-align:center}
+  .scroll-hint{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">A. Haleem</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:abdelrahman.ahmed.haleem@gmail.com" class="nav-resume">Hire Me →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <p class="hero-label">AI Engineering Graduate · Cairo, Egypt</p>
+    <h1>Abdelrahman<br/><em>Haleem</em></h1>
+    <p class="hero-sub">Building intelligent systems at the intersection of NLP, cloud infrastructure, and IP networking. 2025 graduate passionate about deploying AI that works in production.</p>
+    <div class="hero-badges">
+      <span class="badge active">NLP &amp; Transformers</span>
+      <span class="badge active">Cloud Native</span>
+      <span class="badge active">CCNA Candidate</span>
+      <span class="badge active">HCIA Candidate</span>
+      <span class="badge">AWS · Docker · Kafka</span>
+      <span class="badge">Arabic AI</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="https://www.linkedin.com/in/haleem1" target="_blank" class="btn-ghost">LinkedIn →</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span class="scroll-line"></span>
+    <span>scroll to explore</span>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-label">01 — About</div>
+  <h2>Who I Am</h2>
+  <div class="section-divider"></div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>I am a <strong>2025 AI Engineering graduate</strong> from Alamein International University with a specialization in Natural Language Processing, cloud-native architecture, and machine learning in production.</p>
+      <p>My work spans building <strong>microservices platforms</strong> deployed on AWS, fine-tuning transformer models for Arabic NLP and web security, and designing full enterprise network topologies in Cisco Packet Tracer.</p>
+      <p>Currently interning at <strong>iLEAD GROUP</strong> as a Technical Sales &amp; Network Intern — working with passive network infrastructure, BOQ preparation, and automating internal workflows with n8n and Python. Actively pursuing <strong>CCNA and HCIA-Datacom</strong> certifications.</p>
+      <p>I am equally at home writing Python ML pipelines, configuring VLANs and OSPF on Cisco switches, or architecting Kafka-based async systems on AWS — a rare blend that makes me effective across both AI and networking domains.</p>
+      <div class="cert-list">
+        <div class="cert-item"><span class="cert-dot"></span>AWS Academy Cloud Foundations — Graduate</div>
+        <div class="cert-item"><span class="cert-dot"></span>HCIA-Datacom — Candidate</div>
+        <div class="cert-item"><span class="cert-dot"></span>CCNA — Candidate</div>
+      </div>
+    </div>
+    <div>
+      <div class="about-stats">
+        <div class="stat-box"><span class="stat-num">4+</span><span class="stat-label">Years studying AI</span></div>
+        <div class="stat-box"><span class="stat-num">94%</span><span class="stat-label">Attack detection accuracy</span></div>
+        <div class="stat-box"><span class="stat-num">10+</span><span class="stat-label">Microservices built</span></div>
+        <div class="stat-box"><span class="stat-num">3</span><span class="stat-label">Internships completed</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="skills-bg">
+  <div class="section-label">02 — Expertise</div>
+  <h2>Skills &amp; Stack</h2>
+  <div class="section-divider"></div>
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <span class="skill-icon">◈</span>
+      <div class="skill-title">AI &amp; Machine Learning</div>
+      <div style="font-size:0.83rem;color:var(--muted);margin-bottom:0.5rem">Transformer models, NLP pipelines, computer vision</div>
+      <div class="skill-items">
+        <span class="pill">PyTorch</span><span class="pill">HuggingFace</span><span class="pill">DistilBERT</span><span class="pill">ViT</span><span class="pill">scikit-learn</span><span class="pill">Pandas</span><span class="pill">LangChain</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">◉</span>
+      <div class="skill-title">Cloud &amp; DevOps</div>
+      <div style="font-size:0.83rem;color:var(--muted);margin-bottom:0.5rem">Cloud-native deployment, containerization, CI/CD</div>
+      <div class="skill-items">
+        <span class="pill">AWS</span><span class="pill">Docker</span><span class="pill">Azure</span><span class="pill">Kafka</span><span class="pill">GitHub Actions</span><span class="pill">n8n</span><span class="pill">NGINX</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">◎</span>
+      <div class="skill-title">IP Networking</div>
+      <div style="font-size:0.83rem;color:var(--muted);margin-bottom:0.5rem">Routing, switching, security, VPN — CCNA &amp; HCIA level</div>
+      <div class="skill-items">
+        <span class="pill">OSPF</span><span class="pill">BGP</span><span class="pill">VLANs</span><span class="pill">IPsec VPN</span><span class="pill">ACLs</span><span class="pill">MPLS</span><span class="pill">Cisco PKT</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">◇</span>
+      <div class="skill-title">Backend &amp; Web</div>
+      <div style="font-size:0.83rem;color:var(--muted);margin-bottom:0.5rem">API design, full-stack development, automation</div>
+      <div class="skill-items">
+        <span class="pill">FastAPI</span><span class="pill">Flask</span><span class="pill">React</span><span class="pill">TypeScript</span><span class="pill">Python</span><span class="pill">Java</span><span class="pill">PostgreSQL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label">03 — Work</div>
+  <h2>Featured Projects</h2>
+  <div class="section-divider"></div>
+  <div class="projects-grid reveal">
+    <div class="project-card">
+      <div class="project-tag">Microservices · Cloud · NLP</div>
+      <div class="project-title">Arabic–English Translation &amp; Summarization Platform</div>
+      <div class="project-desc">Production-grade cloud-native platform featuring bidirectional AR↔EN translation and BART-based summarization. 10+ decoupled microservices communicating via Kafka, full user authentication, CI/CD on AWS App Runner.</div>
+      <div class="project-stack"><span class="pill">FastAPI</span><span class="pill">React</span><span class="pill">Kafka</span><span class="pill">Docker</span><span class="pill">AWS</span><span class="pill">MarianMT</span></div>
+      <a href="https://github.com/AbdelrahmanHaleem/translation-summarization-platform" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+    <div class="project-card">
+      <div class="project-tag">Security · NLP · Deep Learning</div>
+      <div class="project-title">AI-Driven Web Attack Detection System</div>
+      <div class="project-desc">Graduation project. Fine-tuned DistilBERT to classify HTTP payloads as benign, XSS, or SQL injection attacks with ~94% accuracy. Parallel detection pipeline built for real-time network traffic analysis.</div>
+      <div class="project-stack"><span class="pill">DistilBERT</span><span class="pill">PyTorch</span><span class="pill">FastAPI</span><span class="pill">Python</span></div>
+      <a href="https://github.com/AbdelrahmanHaleem/DistilBERT-Version" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+    <div class="project-card">
+      <div class="project-tag">Networking · Security · Cisco</div>
+      <div class="project-title">Medcare Clinic Network Design</div>
+      <div class="project-desc">Full enterprise network topology for a multi-branch medical clinic in Cisco Packet Tracer. VLANs, OSPF, EtherChannel, DHCP Snooping, Port Security, ACLs, and Site-to-Site IPsec VPN for secure EMR data exchange.</div>
+      <div class="project-stack"><span class="pill">Cisco Packet Tracer</span><span class="pill">OSPF</span><span class="pill">IPsec VPN</span><span class="pill">ACLs</span><span class="pill">VLANs</span></div>
+      <a href="https://github.com/AbdelrahmanHaleem" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+    <div class="project-card">
+      <div class="project-tag">Arabic NLP · Research</div>
+      <div class="project-title">Quranic Passage Question Answering System</div>
+      <div class="project-desc">Extractive QA system for Arabic religious text. Evaluated and fine-tuned AraBERT, MARBERT, GPT-2, and T5. Extensive preprocessing pipeline for classical Arabic with notable improvements in span extraction F1.</div>
+      <div class="project-stack"><span class="pill">AraBERT</span><span class="pill">MARBERT</span><span class="pill">T5</span><span class="pill">HuggingFace</span><span class="pill">Python</span></div>
+      <a href="https://github.com/AbdelrahmanHaleem" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+    <div class="project-card">
+      <div class="project-tag">Computer Vision · PyTorch</div>
+      <div class="project-title">Vision Transformer for Letter Classification</div>
+      <div class="project-desc">Built and trained a Vision Transformer (ViT) from scratch for classifying handwritten English letters. Applied image patching, positional encoding, and multi-head attention with a custom classification head.</div>
+      <div class="project-stack"><span class="pill">PyTorch</span><span class="pill">ViT</span><span class="pill">Python</span><span class="pill">Matplotlib</span></div>
+      <a href="https://github.com/AbdelrahmanHaleem/AIE314-Tutorial1" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+    <div class="project-card">
+      <div class="project-tag">LangChain · RAG · Enterprise AI</div>
+      <div class="project-title">LangChain Enterprise AI Agents</div>
+      <div class="project-desc">Two production-grade LangChain pipelines: a RAG-based enterprise customer support agent with document retrieval, and an academic research assistant using the ReAct pattern with multi-source synthesis.</div>
+      <div class="project-stack"><span class="pill">LangChain</span><span class="pill">FAISS</span><span class="pill">OpenAI</span><span class="pill">Python</span></div>
+      <a href="https://github.com/AbdelrahmanHaleem/Lab-Work-4-Advanced-LangChain-Applications" target="_blank" class="project-link">View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-label">04 — History</div>
+  <h2>Experience</h2>
+  <div class="section-divider"></div>
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">FEB 2026 — PRESENT</div>
+      <div class="timeline-role">Technical Sales &amp; Network Intern</div>
+      <div class="timeline-company">iLEAD GROUP — New Cairo, Egypt</div>
+      <ul class="timeline-bullets">
+        <li>Managing passive network infrastructure including structured cabling, data center setups, and outlet installations</li>
+        <li>Preparing detailed BOQs and coordinating technical specifications with distributors and vendors</li>
+        <li>Automating internal sales workflows and technical documentation using n8n and prompt engineering</li>
+        <li>Engaging key decision-makers — CIOs, CTOs, IT Managers — for tenders and large-scale IT procurement</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">SUMMER 2024</div>
+      <div class="timeline-role">Arabic NLP Research Intern</div>
+      <div class="timeline-company">SRTA-City — New Cairo, Egypt</div>
+      <ul class="timeline-bullets">
+        <li>Designed and implemented an extractive QA system for Quranic passages using state-of-the-art Arabic NLP models</li>
+        <li>Evaluated and fine-tuned AraBERT, MARBERT, GPT-2, and T5 with extensive preprocessing pipelines</li>
+        <li>Achieved notable improvements in Arabic language understanding for classical religious texts</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">SUMMER 2024</div>
+      <div class="timeline-role">Prompt Engineering Intern</div>
+      <div class="timeline-company">iLEAD GROUP — New Cairo, Egypt</div>
+      <ul class="timeline-bullets">
+        <li>Developed a year-long strategic marketing plan across multiple platforms with focus on LinkedIn</li>
+        <li>Applied advanced prompt engineering techniques to optimize AI content generation and engagement strategies</li>
+        <li>Collaborated with the marketing team to align AI-generated content with brand objectives</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">SUMMER 2023</div>
+      <div class="timeline-role">App Development Intern (Java)</div>
+      <div class="timeline-company">Information Technology Institute (ITI) — New Cairo, Egypt</div>
+      <ul class="timeline-bullets">
+        <li>Developed Android mobile applications using Java with focus on functionality and user experience</li>
+        <li>Implemented object-oriented programming principles in collaborative application development</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot gold"></div>
+      <div class="timeline-date">2022 — 2024</div>
+      <div class="timeline-role">Office Manager &amp; Developer</div>
+      <div class="timeline-company">Haleem Consulting Office — Cairo, Egypt</div>
+      <ul class="timeline-bullets">
+        <li>Managed daily office operations, client communications, and project timelines for an engineering consultancy</li>
+        <li>Automated internal workflows using Python scripts and Excel macros, improving data handling efficiency</li>
+        <li>Built the firm's corporate website — deployed live on Vercel</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="education" style="background:var(--surface)">
+  <div class="section-label">05 — Education</div>
+  <h2>Academic Background</h2>
+  <div class="section-divider"></div>
+  <div class="edu-grid reveal">
+    <div class="edu-card">
+      <div class="edu-degree">Bachelor of Engineering in Artificial Intelligence</div>
+      <div class="edu-institution">Alamein International University</div>
+      <div class="edu-dates">2021 — 2025</div>
+      <div class="edu-courses">Computer Networks · Cloud Computing · Network Security · AI in Production · Large Language Models · Deep Learning · Computer Vision · Software Development · Web Development</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Certifications &amp; Courses</div>
+      <div class="edu-institution">Industry Credentials</div>
+      <div class="edu-dates">2024 — Present</div>
+      <div class="edu-courses">AWS Academy Cloud Foundations — Graduate<br/>HCIA-Datacom — Candidate (Huawei)<br/>CCNA — Candidate (Cisco)</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-bg" style="background:var(--bg)">
+  <div class="section-label">06 — Contact</div>
+  <h2>Get In Touch</h2>
+  <div class="section-divider"></div>
+  <div class="contact-inner reveal">
+    <div class="availability">
+      <span class="availability-dot"></span>
+      Available for internships &amp; full-time roles
+    </div>
+    <p class="contact-text">I am actively seeking opportunities in IP networking, AI engineering, and cloud infrastructure. Whether you are a recruiter, a fellow engineer, or someone building something interesting — I would be glad to connect.</p>
+    <div class="contact-links">
+      <a href="mailto:abdelrahman.ahmed.haleem@gmail.com" class="contact-link">
+        <span class="contact-link-label">EMAIL</span>
+        <span class="contact-link-val">abdelrahman.ahmed.haleem@gmail.com</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="https://www.linkedin.com/in/haleem1" target="_blank" class="contact-link">
+        <span class="contact-link-label">LINKEDIN</span>
+        <span class="contact-link-val">linkedin.com/in/haleem1</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="https://github.com/AbdelrahmanHaleem" target="_blank" class="contact-link">
+        <span class="contact-link-label">GITHUB</span>
+        <span class="contact-link-val">github.com/AbdelrahmanHaleem</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="tel:+201008180676" class="contact-link">
+        <span class="contact-link-label">PHONE</span>
+        <span class="contact-link-val">+20 100-8180676</span>
+        <span class="contact-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-text">© 2026 Abdelrahman Ahmed Haleem — Cairo, Egypt</span>
+  <ul class="footer-links">
+    <li><a href="https://github.com/AbdelrahmanHaleem" target="_blank">GitHub</a></li>
+    <li><a href="https://www.linkedin.com/in/haleem1" target="_blank">LinkedIn</a></li>
+    <li><a href="mailto:abdelrahman.ahmed.haleem@gmail.com">Email</a></li>
+  </ul>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
